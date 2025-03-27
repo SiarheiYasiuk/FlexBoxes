@@ -1,0 +1,186 @@
+// Импорт шрифтов и CSS-сбросов
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+// Основные стили для HTML
+html {
+    background: mediumseagreen;
+    font-size: 14px;
+    -moz-osx-font-smoothing: grayscale; // Сглаживание шрифтов для Firefox на MacOS
+    -webkit-font-smoothing: antialiased; // Сглаживание шрифтов для WebKit
+    min-width: 300px; // Минимальная ширина страницы
+    overflow-x: hidden; // Скрытие горизонтального скролла
+    overflow-y: scroll; // Всегда показывать вертикальный скроллбар
+    text-rendering: optimizeLegibility; // Оптимизация читаемости текста
+}
+
+// Основные стили для body
+body {
+    color: #666;
+    font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4; // Межстрочный интервал
+}
+
+// Базовые стили для ссылок
+a {
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); // Плавные переходы
+}
+
+// Сброс отступов для элементов
+div,
+h2,
+p,
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+// Стили для шапки
+.header {
+    color: white;
+    padding: 40px 0 20px;
+    text-align: center;
+
+    h1 {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    h2 a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        color: white;
+        font-size: 20px;
+        opacity: 0.5;
+
+        &:hover {
+            border-bottom-color: white;
+            opacity: 1;
+        }
+    }
+}
+
+// Основной контейнер контента
+.main {
+    margin: 0 auto;
+    max-width: 1040px;
+    padding: 10px;
+}
+
+// Колонка (flex-элемент)
+.column {
+    flex: 1;
+    flex-direction: column;
+}
+
+// Стили для карточек статей
+.article {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: #666;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-basis: auto;
+    margin: 10px;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
+        color: #444;
+    }
+}
+
+// Стили для изображений в статьях
+.article-image {
+    background: #eee;
+    display: block;
+    padding-top: 75%; // Соотношение сторон 4:3 по умолчанию
+    position: relative;
+    width: 100%;
+
+    img {
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    // Модификаторы соотношения сторон
+    &.is-3by2 {
+        padding-top: 66.6666%; // 3:2
+    }
+
+    &.is-16by9 {
+        padding-top: 56.25%; // 16:9
+    }
+}
+
+// Тело статьи
+.article-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+}
+
+// Заголовок статьи
+.article-title {
+    color: #333;
+    flex-shrink: 0; // Запрет на уменьшение
+    font-size: 1.4em;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+// Контент статьи
+.article-content {
+    flex: 1; // Занимает все доступное пространство
+    margin-top: 5px;
+}
+
+// Информация в статье (дата, автор и т.д.)
+.article-info {
+    display: flex;
+    font-size: 0.85em;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+// Медиа-запросы
+@media screen and (min-width: 800px) {
+    .columns,
+    .column {
+        display: flex; // Включаем flex-раскладку на широких экранах
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .first-article {
+        flex-direction: row; // Первая статья в ряд на широких экранах
+
+        .article-body {
+            flex: 1;
+        }
+
+        .article-image {
+            height: 300px;
+            order: 2; // Изображение справа
+            padding-top: 0;
+            width: 400px;
+        }
+    }
+
+    .main-column {
+        flex: 3; // Основная колонка занимает 3 части
+    }
+
+    .nested-column {
+        flex: 2; // Вложенная колонка занимает 2 части
+    }
+}
